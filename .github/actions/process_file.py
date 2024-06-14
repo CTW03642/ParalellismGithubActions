@@ -2,8 +2,8 @@ import argparse
 
 def process_file(file_name):
 
-    print(f"Processing file: {file_name}")
-    
+    print(f"\nProcessing file: {file_name}")
+
     with open(f'files/{file_name}', 'r') as file:
         # Read the content of the file
         file_content = file.read()
