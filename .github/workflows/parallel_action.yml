@@ -19,10 +19,16 @@ jobs:
         run: |
           FILES=$(python .github/actions/get_files.py)
           echo "FILES=$FILES" >> $GITHUB_ENV
-          echo "::set-output name=file-matrix::$FILES"
+          echo "$FILES" > files_output.txt
+
+      - name: Set output file matrix
+        id: set-matrix
+        run: |
+          FILES=$(cat files_output.txt)
+          echo "file-matrix=$FILES" >> $GITHUB_OUTPUT
       
     outputs:
-      file-matrix: ${{ steps.get-files.outputs.file-matrix }}
+      file-matrix: ${{ steps.set-matrix.outputs.file-matrix }}
 
   process-files:
     needs: get-files
