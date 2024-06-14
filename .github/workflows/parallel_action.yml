@@ -30,4 +30,8 @@ jobs:
         run: python .github/actions/get_files.py
       
       - name: Process Files
-        run: python .github/actions/process_file.py --file-name ${{ steps.get_files.outputs.files }}
+        run: |
+          for file_name in ${{ steps.get_files.outputs.files }}
+          do
+            python process_file.py --file-name $file_name
+          done
