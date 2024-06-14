@@ -31,7 +31,7 @@ jobs:
       
       - name: Process Files
         run: |
-          for file_name in ${{ steps.get_files.outputs.files }}
+          for file_name in ${{ env.FILES }}
           do
             python process_file.py --file-name $file_name
           done
