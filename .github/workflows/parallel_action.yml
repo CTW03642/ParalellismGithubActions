@@ -30,7 +30,7 @@ jobs:
         run: echo "FILES=$(python .github/actions/get_files.py)" >> $GITHUB_ENV
       
       - id: set-matrix
-        run: echo '::set-output name=file_matrix::${{ env.FILES }}'
+        run: echo '::set-output name=file-matrix::${{ env.FILES }}'
       
     outputs:
       file-matrix: ${{ steps.set-matrix.outputs.file-matrix }}
