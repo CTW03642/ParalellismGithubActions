@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  get-files:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -29,12 +29,21 @@ jobs:
       - name: Run script to get files
         run: echo "FILES=$(python .github/actions/get_files.py)" >> $GITHUB_ENV
       
-      - name: Show files to be processed
-        run: echo ${{ env.FILES }}
+      - id: set-matrix
+        run: echo '::set-output name=file_matrix::${{ env.FILES }}'
+      
+    outputs:
+      file-matrix: ${{ steps.set-matrix.outputs.file-matrix }}
 
-      - name: Process Files
-        run: |
-          for file_name in $FILES; do
-            echo "$file_name"
-            python .github/actions/process_file.py --file-name $file_name
-          done
+  process-files:
+    needs: get-files
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        file-name: ${{ fromJson(needs.get-files.outputs.file-matrix) }}
+
+    steps:
+
+      - name: Process File
+        run: python .github/actions/process_file.py --file-name ${{ file-matrix }}

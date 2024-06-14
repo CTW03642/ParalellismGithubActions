@@ -10,8 +10,6 @@ def process_file(file_name):
          
         # Print the content
         print("File Content:\n", file_content)
-    
-    print('\n')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process a file.')
