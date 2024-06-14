@@ -2,7 +2,7 @@ import argparse
 
 def process_file(file_name):
 
-    print(f"\nProcessing file: {file_name}")
+    print(f"Processing file: {file_name}")
 
     with open(f'files/{file_name}', 'r') as file:
         # Read the content of the file
@@ -10,6 +10,8 @@ def process_file(file_name):
          
         # Print the content
         print("File Content:\n", file_content)
+    
+    print('\n')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process a file.')
