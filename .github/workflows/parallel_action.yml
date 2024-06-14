@@ -46,4 +46,4 @@ jobs:
     steps:
 
       - name: Process File
-        run: python .github/actions/process_file.py --file-name ${{ file-matrix }}
+        run: python .github/actions/process_file.py --file-name ${{ matrix.file }}
