@@ -3,7 +3,8 @@ import os
 def get_files() -> None:
     # List of file names to process
     file_names = os.listdir('files')
-
+    print(file_names)
+    return
     #os.environ['FILES'] = ','.join(file_names)
     env_file = os.getenv('GITHUB_ENV')
 
