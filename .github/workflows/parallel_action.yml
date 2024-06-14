@@ -29,8 +29,12 @@ jobs:
       - name: Run script to get files
         run: python .github/actions/get_files.py
       
+      - name: Show files to be processed
+        run: echo ${{ env.FILES }}
+
       - name: Process Files
         run: |
-          for file_name in $FILES; do
+          for file_name in ${{ env.FILES }}; do
+            echo "$file_name"
             python process_file.py --file-name $file_name
           done
