@@ -30,7 +30,7 @@ jobs:
     outputs:
       file-matrix: ${{ steps.set-matrix.outputs.file-matrix }}
 
-  process-files:
+  process-file:
     needs: get-files
     runs-on: ubuntu-latest
 
